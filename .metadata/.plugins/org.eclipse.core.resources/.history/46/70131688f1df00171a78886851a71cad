@@ -1,0 +1,80 @@
+
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class testing extends JFrame{
+	/************************************************
+	 * Resource
+	 *************************************************/
+	// Music
+	// private Audio introMusic;
+
+	// Image
+	/************************************************
+	 * Component/object
+	 *************************************************/
+	static private JButton loadButton = new JButton("hello");
+	final Image back = new ImageIcon(this.getClass().getResource("back.png")).getImage().getScaledInstance(1024, 724, Image.SCALE_SMOOTH);
+	public testing() {
+		//GameInformationMaster Init
+		setSize(1024, 724);
+		setUndecorated(true);
+		setTitle("Table Simulator");
+		setResizable(false);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setBackground(new Color(255, 255, 255, 255));
+//		setLayout(null);
+	}
+	public void paint(Graphics g) {
+		g.drawImage(back, 0, 0, 1024, 724, null);
+	}
+	/// GAME APPLICATION이 실행될 때 반드시 초기화해야하는 GIM 변수
+	/// - KeyInputBuffer / GIM-currentScene / GIM-blockPriority // BlockObject
+	public static void main(String[] args) {
+		testing t = new testing();
+		// s
+		loadButton.setBounds(30, 724, 175, 50);
+		loadButton.setBorderPainted(true); // 버튼 배치 테스트 때문에 true로 변경
+		loadButton.setContentAreaFilled(false); // 채우지마
+		loadButton.setFocusPainted(false);
+		loadButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// button.setIcon으로 아이콘변경
+				loadButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// button.setIcon으로 아이콘변경
+				loadButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			}
+
+			@
+			Override
+			public void mousePressed(MouseEvent e) {
+				}
+		});
+	//	t.add(loadButton);
+		
+		synchronized(loadButton){
+			try {
+				loadButton.wait();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+}

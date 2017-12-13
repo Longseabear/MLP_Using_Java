@@ -1,0 +1,29 @@
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class visualization2 {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		JFrame frm = new JFrame("그림 보기 예제");
+		Image back = new ImageIcon(visualization2.class.getResource("back.png")).getImage().getScaledInstance(1024, 724,
+				Image.SCALE_SMOOTH);
+		frm.setLayout(new FlowL);
+		
+		frm.setBounds(10, 10, 1024, 724);
+		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ImageIcon ic = new ImageIcon(back);
+		JLabel lbImage1 = new JLabel(ic);
+		frm.add(lbImage1);	
+		
+		JButton b = new JButton("Test");
+		b.setBounds(300, 300, 100, 30);
+		//frm.add(b);
+		
+		frm.setVisible(true);
+	}
+}
